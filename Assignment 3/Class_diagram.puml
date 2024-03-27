@@ -1,0 +1,32 @@
+@startuml Library_system
+class Library {
+  - name: string
+  - location: string
+  + addBook(book: Book): void
+  + removeBook(book: Book): void
+  + lendBook(book: Book, patron: Patron): void
+  + returnBook(book: Book): void
+}
+
+class Book {
+  - title: string
+  - author: string
+  - ISBN: string
+  - available: boolean
+  + checkAvailability(): boolean
+}
+
+class Patron {
+  - name: string
+  - memberID: string
+  + borrowBook(book: Book): void
+  + returnBook(book: Book): void
+}
+
+Library "1" -- "many" Book : contains
+Book "1" -- "1" Patron : borrowed by
+@enduml
+
+
+
+

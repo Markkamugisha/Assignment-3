@@ -1,0 +1,18 @@
+@startuml
+participant Patron
+participant Library
+participant Book
+
+Patron -> Library: Request to borrow book
+activate Library
+Library -> Library: Check book availability
+alt Book is available
+  Library -> Patron: Lend book
+  activate Patron
+  Patron -> Patron: Receive book
+  deactivate Patron
+else Book is not available
+  Library --> Patron: Book not available
+end
+deactivate Library
+@enduml
